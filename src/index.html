@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEMO VALİDATOR</title>
+</head>
+
+<body>
+
+  <h3>HELLO WEBPACK</h3>
+
+  <form id="form" autocomplete="off">
+    <div style="margin: 10px 0;">
+      <input type="text" name="username" id="username" class="username" placeholder="Kullanıcı Adı Giriniz">
+      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
+    </div>
+
+    <div style="margin: 10px 0;">
+      <input type="text" name="username" class="email" placeholder="Email Giriniz">
+      <div style="font-size: 13px; color: crimson;" class="input-error asd"></div>
+    </div>
+
+    <div style="margin: 10px 0;">
+      <input type="password" class="pass" placeholder="Şifre Giriniz">
+      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
+    </div>
+    <button>GÖNDER</button>
+  </form>
+
+  <script>
+    window.onload = () => {
+      const valid = new ValidateForm({
+        root: "#form",
+        submitOnValid: true,
+        inputEvent: "input"
+      })
+
+      valid.customControl({
+        target: "#username",
+        required: "Az çok demeyelim boş geçmeyelim",
+        max: {
+          value: 5,
+          error: "Kullanıcı adı en fazla 5 karakter olar"
+        },
+        error: (err, _) => {
+          _.nextElementSibling.innerHTML = "";
+          err.forEach(item => _.nextElementSibling.innerHTML += `<p>${item.message}</p>`)
+        }
+      });
+
+      valid.customControl({
+        target: ".email",
+        required: "Email alanı boş geçilemez",
+        email: "Geçersiz email adresi",
+        min: {
+          value: 2,
+          error: "Email alanı en az 2 karakter olmalı"
+        },
+        error: (err, _) => {
+          _.nextElementSibling.innerHTML = "";
+          err.forEach(item => _.nextElementSibling.innerHTML += `<p>${item.message}</p>`)
+        }
+      })
+
+      valid.customControl({
+        target: ".pass",
+        required: "Şifre alanı zorunlu",
+        error: (err, _) => {
+          _.nextElementSibling.innerHTML = "";
+          err.forEach(item => _.nextElementSibling.innerHTML += `<p>${item.message}</p>`)
+        }
+      })
+
+      document.querySelector("form").addEventListener("submit", (e) => {
+        if (valid.mistake.length > 0) {
+          console.log(valid.mistake)
+        }
+      })
+    }
+  </script>
+
+</body>
+
+</html>

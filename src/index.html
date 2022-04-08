@@ -27,6 +27,27 @@
       <input type="password" class="pass" placeholder="Şifre Giriniz">
       <div style="font-size: 13px; color: crimson;" class="input-error"></div>
     </div>
+
+    <div style="margin: 10px 0;">
+      <select id="select">
+        <option value=""></option>
+        <option value="0">A</option>
+        <option value="1">B</option>
+        <option value="2">C</option>
+        <option value="3">D</option>
+      </select>
+      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
+    </div>
+
+    <div style="margin: 10px 0;">
+      <input type="checkbox" id="check"> Check
+      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
+    </div>
+
+    <div style="margin: 10px 0;">
+      <input type="radio" id="radio"> Radio
+      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
+    </div>
     <button>GÖNDER</button>
   </form>
 
@@ -45,9 +66,9 @@
           value: 5,
           error: "Kullanıcı adı en fazla 5 karakter olar"
         },
-        error: (err, _) => {
-          _.nextElementSibling.innerHTML = "";
-          err.forEach(item => _.nextElementSibling.innerHTML += `<p>${item.message}</p>`)
+        error: (err, item) => {
+          item.nextElementSibling.innerHTML = "";
+          err.forEach(elem => item.nextElementSibling.innerHTML += `<p>${elem.message}</p>`)
         }
       });
 
@@ -68,10 +89,21 @@
       valid.customControl({
         target: ".pass",
         required: "Şifre alanı zorunlu",
-        error: (err, _) => {
-          _.nextElementSibling.innerHTML = "";
-          err.forEach(item => _.nextElementSibling.innerHTML += `<p>${item.message}</p>`)
-        }
+      })
+
+      valid.customControl({
+        target: "#select",
+        required: "Bir seçenek seçin"
+      })
+
+      valid.customControl({
+        target: "#check",
+        checked: "Check yap loa"
+      })
+
+      valid.customControl({
+        target: "#radio",
+        radio: "Radio yap laoa"
       })
 
       document.querySelector("form").addEventListener("submit", (e) => {

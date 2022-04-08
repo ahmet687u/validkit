@@ -31,7 +31,7 @@ export default class ValidateForm {
     const value = currentInput.value;
 
     let customMistake = Object.keys(settings)
-      .map((item) => typeof Utils[item] === "function" && Utils[item](value, settings[item]))
+      .map((item) => typeof Utils[item] === "function" &&  (item === "checked" || item === "radio" ? Utils.radio(settings[item], currentInput) : Utils[item](value, settings[item])))
       .filter((c) => c)
       .filter(c => {
         if(c.process === "delete") {

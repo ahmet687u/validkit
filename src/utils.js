@@ -23,6 +23,14 @@ export default class Utils {
     }
   }
 
+  static radio(item, input) {
+    if(!input.checked) {
+      return {process: "add", message: item}
+    } else {
+      return {process: "delete", message: item}
+    }
+  }
+
   static email(value, item) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value) === false) {
       return {process: "add", message: item}

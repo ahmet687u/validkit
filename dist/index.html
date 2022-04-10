@@ -2,7 +2,7 @@
       const valid = new ValidateForm({
         root: "#form",
         submitOnValid: false,
-        inputEvent: "input"
+        inputEvent: "keyup"
       })
 
       valid.customControl({
@@ -50,9 +50,5 @@
       valid.customControl({
         target: "#radio",
         radio: "Radio yap laoa"
-      })
-
-      document.querySelector("form").addEventListener("submit", (e) => {
-        console.log(valid.mistake)
       })
     }</script></body></html>

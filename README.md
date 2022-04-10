@@ -8,7 +8,7 @@ validkit javascript ile form validasyonları yapan bir kütüphanedir
 const validkit = new ValidateForm({
   root: "#form",
   submitOnValid: false,
-  inputEvent: "change",
+  inputEvent: "keyup",
   submitFunc: async (valid) => {
     if(valid.mistake.length === 0) {
       //--- Hiçbir hata yok
@@ -40,7 +40,7 @@ validkit.customControl({
   }
 })
 ```
-Yukarıdaki örnekte basit bir input kontrolü yapıyoruz. ***target*** özelliğine kontol edeceğimiz inputun class ya da id 'sini giriyoruz. En üstteki tanımlamada event olarak change eventini seçtiğimiz için target özelliğinde seçilen inputun her change olayında belirlediğimiz kontrolleri yapacaktır. Eğer yapılan kontrollerde bir hata varsa ***error*** özelliğine o input için geçerli olan hatalar parametre olarak gelecektir. error özelliğine 2 parametre gelir bunlardan ilki hatalar, ikincisi target özelliğinde seçtiğimiz alandır. İlk parametrede gelecek olan hata mesajları özelliğin karşısında belirlediğimiz string değerlerdir
+Yukarıdaki örnekte basit bir input kontrolü yapıyoruz. ***target*** özelliğine kontol edeceğimiz inputun class ya da id 'sini giriyoruz. En üstteki tanımlamada event olarak keyup eventini seçtiğimiz için target özelliğinde seçilen inputun her keyup olayında belirlediğimiz kontrolleri yapacaktır. Eğer yapılan kontrollerde bir hata varsa ***error*** özelliğine o input için geçerli olan hatalar parametre olarak gelecektir. error özelliğine 2 parametre gelir bunlardan ilki hatalar, ikincisi target özelliğinde seçtiğimiz alandır. İlk parametrede gelecek olan hata mesajları özelliğin karşısında belirlediğimiz string değerlerdir
 
 ## Yapabileceğiniz Kontroller
 required => Seçili olan alanın zorunlu doldurulması gerektiğini belirtir

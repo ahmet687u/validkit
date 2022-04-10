@@ -1,37 +1,43 @@
-const path = require("path")
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    "js/bundle": "./src/index.js"
+    "js/validkit": "./src/index.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].js"
+    filename: "[name].js",
+    library: {
+      name: "ValidateForm",
+      type: "umd",
+    },
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, "dist"),
     },
     compress: true,
     port: 9000,
   },
-  plugins: [new HtmlWebpackPlugin({
-    filename: "index.html",
-    template: "./src/index.html"
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "./src/index.html",
+    }),
+  ],
   module: {
     rules: [
       {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
-  }
-}
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+    ],
+  },
+};

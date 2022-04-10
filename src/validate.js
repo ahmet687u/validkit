@@ -1,7 +1,7 @@
 import Utils from "./utils";
 
-export default class ValidateForm {
-  constructor({ root, submitOnValid, inputEvent }) {
+export default class {
+  constructor({ root, submitOnValid, inputEvent, submitFunc }) {
     this.root = document.querySelector(root);
     this.inputs = [...this.root.querySelectorAll("input, select, textarea")];
 
@@ -15,6 +15,11 @@ export default class ValidateForm {
       e.preventDefault();
       
       this.submitOnValid && !this.hasMistake && this.root.submit()
+
+      !this.submitOnValid && submitFunc && typeof submitFunc === "function" && submitFunc(this)
+      
+      //--- Event bubbling cancel
+      e.stopImmediatePropagation();
     });
   }
 
@@ -31,7 +36,7 @@ export default class ValidateForm {
     const value = currentInput.value;
 
     let customMistake = Object.keys(settings)
-      .map((item) => typeof Utils[item] === "function" &&  (item === "checked" || item === "radio" ? Utils.radio(settings[item], currentInput) : Utils[item](value, settings[item])))
+      .map((item) => typeof Utils[item] === "function" &&  Utils[item](value, settings[item], currentInput))
       .filter((c) => c)
       .filter(c => {
         if(c.process === "delete") {
@@ -45,7 +50,6 @@ export default class ValidateForm {
     this.mistakes = [...this.mistakes, ...customMistake]
     this.mistakes = [...new Set(this.mistakes.map(a => JSON.stringify(a)))].map(a => JSON.parse(a))
 
-      
     if(hide) {
       //--- We are running the callback function
       settings.error && typeof settings.error === "function" && settings.error(customMistake, currentInput)

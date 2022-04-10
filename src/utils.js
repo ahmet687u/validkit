@@ -23,7 +23,15 @@ export default class Utils {
     }
   }
 
-  static radio(item, input) {
+  static checked(value, item, input) {
+    if(!input.checked) {
+      return {process: "add", message: item}
+    } else {
+      return {process: "delete", message: item}
+    }
+  }
+
+  static radio(value, item, input) {
     if(!input.checked) {
       return {process: "add", message: item}
     } else {

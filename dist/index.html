@@ -1,7 +1,7 @@
-<!doctype html><html lang="tr"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DEMO VALİDATOR</title><script defer="defer" src="js/bundle.js"></script></head><body><h3>HELLO WEBPACK</h3><form id="form" autocomplete="off"><div style="margin: 10px 0;"><input name="username" id="username" class="username" placeholder="Kullanıcı Adı Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input name="username" class="email" placeholder="Email Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error asd"></div></div><div style="margin: 10px 0;"><input type="password" class="pass" placeholder="Şifre Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><select id="select"><option value=""></option><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input type="checkbox" id="check"> Check<div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input type="radio" id="radio"> Radio<div style="font-size: 13px; color: crimson;" class="input-error"></div></div><button>GÖNDER</button></form><script>window.onload = () => {
+<!doctype html><html lang="tr"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DEMO VALİDATOR</title><script defer="defer" src="js/validkit.js"></script></head><body><h3>HELLO WEBPACK</h3><form id="form" autocomplete="off"><div style="margin: 10px 0;"><input name="username" id="username" class="username" placeholder="Kullanıcı Adı Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input name="username" class="email" placeholder="Email Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error asd"></div></div><div style="margin: 10px 0;"><input type="password" class="pass" placeholder="Şifre Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><select id="select"><option value=""></option><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input type="checkbox" id="check"> Check<div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input type="radio" id="radio"> Radio<div style="font-size: 13px; color: crimson;" class="input-error"></div></div><button>GÖNDER</button></form><script>window.onload = () => {
       const valid = new ValidateForm({
         root: "#form",
-        submitOnValid: true,
+        submitOnValid: false,
         inputEvent: "input"
       })
 
@@ -53,8 +53,6 @@
       })
 
       document.querySelector("form").addEventListener("submit", (e) => {
-        if (valid.mistake.length > 0) {
-          console.log(valid.mistake)
-        }
+        console.log(valid.mistake)
       })
     }</script></body></html>

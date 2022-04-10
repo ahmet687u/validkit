@@ -55,7 +55,7 @@
     window.onload = () => {
       const valid = new ValidateForm({
         root: "#form",
-        submitOnValid: true,
+        submitOnValid: false,
         inputEvent: "input"
       })
 
@@ -107,9 +107,7 @@
       })
 
       document.querySelector("form").addEventListener("submit", (e) => {
-        if (valid.mistake.length > 0) {
-          console.log(valid.mistake)
-        }
+        console.log(valid.mistake)
       })
     }
   </script>

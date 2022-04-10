@@ -3,6 +3,16 @@
 ## İşlevi
 validkit javascript ile form validasyonları yapan bir kütüphanedir
 
+## Import
+```
+npm i validkit
+```
+diyerek kütüphaneyi yükleyebilir ve ardından
+```
+import ValidateForm from 'validkit';
+```
+bu şekilde import edip kullanabilirsiniz
+
 ## Tanımlama
 ```
 const validkit = new ValidateForm({

@@ -7,19 +7,23 @@ export default class {
 
     this.submitOnValid = submitOnValid;
     this.inputEvent = inputEvent;
+    this.submitFunc = submitFunc;
 
     this.mistakes = [];
 
     //--- Root element submit event
-    this.root.addEventListener("submit", (e) => {
-      e.preventDefault();
+    this.root.addEventListener("submit", (event) => {
+      event.preventDefault();
       
       this.submitOnValid && !this.hasMistake && this.root.submit()
-
-      !this.submitOnValid && submitFunc && typeof submitFunc === "function" && submitFunc(this)
+      
+      if(!this.submitOnValid && this.submitFunc && typeof this.submitFunc === "function") {
+        this.refresh()
+        this.submitFunc(this)
+      } 
       
       //--- Event bubbling cancel
-      e.stopImmediatePropagation();
+      event.stopImmediatePropagation();
     });
   }
 
@@ -29,6 +33,10 @@ export default class {
 
   get hasMistake() {
     return this.mistakes.length > 0;
+  }
+
+  refresh() {
+    this.inputs.forEach(input => input.dispatchEvent(new KeyboardEvent(this.inputEvent, {'key':''})))
   }
 
   customControl(settings, hide = false) {

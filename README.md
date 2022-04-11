@@ -20,12 +20,14 @@ const validkit = new ValidateForm({
   submitOnValid: false,
   inputEvent: "keyup",
   submitFunc: async (valid) => {
-    if(valid.mistake.length === 0) {
-      //--- Hiçbir hata yok
+    if(!valid.hasMistake) {
       const response = await fetch("https://jsonplaceholder.typicode.com/users");
       const result = await response.json()
 
-      console.log(result)
+        console.log(result)
+        valid.inputs.forEach(input => input.value = "")
+    } else {
+      console.log(valid.mistake)
     }
   }
 })
@@ -33,7 +35,7 @@ const validkit = new ValidateForm({
 
 Yukarıdaki tanımlamada ***root*** özelliğine formun id yada class 'ını yazıyoruz, ***submitOnValid*** özelliği formdaki tüm validasyonlar doğru olduğu zaman formun submit olup olmamasını belirler, ***inputEvent*** ise validasyonları girdilerin hangi eventine göre olacağını belirler.
 
-***submitFunc*** özelliğinde ise formdaki validasyonların tamamı geçmişse ve submitOnValid özelliği false ise bu özelliğin içindeki fonksiyon çalışır. Örnekteki submtiFunc fonksiyonundaki ***valid.mistake*** bize formdaki tüm hataların içinde bulunduğu bir dizi verir
+***submitFunc*** özelliğinde ise formdaki validasyonların tamamı geçmişse ve submitOnValid özelliği false ise bu özelliğin içindeki fonksiyon çalışır. Örnekteki submtiFunc fonksiyonundaki ***valid.mistake*** bize formdaki tüm hataların içinde bulunduğu bir dizi verir. ***valid.hasMistake*** hata olup olmadığı hakkında boolean bir değer verir.
 
 ## Örnek Girdi Kontrolü
 ```

@@ -1,6 +1,6 @@
 {
   "name": "validkit",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Javascript form validator",
   "homepage": "https://github.com/ahmet687u/validkit",
   "main": "dist/js/validkit.js",

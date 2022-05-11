@@ -35,8 +35,12 @@ export default class {
     return this.mistakes.length > 0;
   }
 
+  get values() {
+    return this.inputs.map(input => ({ [input.name]: input.value }))
+  }
+
   refresh() {
-    this.inputs.forEach(input => input.dispatchEvent(new KeyboardEvent(this.inputEvent, {'key':''})))
+    this.inputs.forEach(input => input.dispatchEvent(new KeyboardEvent(this.inputEvent, { 'key': '' })))
   }
 
   customControl(settings, hide = false) {

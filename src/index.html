@@ -29,6 +29,11 @@
     </div>
 
     <div style="margin: 10px 0;">
+      <input name="pass" type="password" class="pass2" placeholder="Tekrardan Şifre Giriniz">
+      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
+    </div>
+
+    <div style="margin: 10px 0;">
       <select name="selectbox" id="select">
         <option value=""></option>
         <option value="A">A</option>
@@ -53,14 +58,16 @@
 
   <script>
     window.onload = () => {
-      console.log(ValidateForm)
-      console.log(window)
       const valid = new ValidateForm({
         root: "#form",
         submitOnValid: false,
         inputEvent: "input",
         submitFunc: (target) => {
-          console.log(target.values)
+          if(!target.hasMistake) {
+            console.log(target.values)
+          } else {
+            console.log(target.mistake);
+          } 
         }
       })
 
@@ -109,6 +116,16 @@
       valid.customControl({
         target: "#radio",
         radio: "Radio yap laoa"
+      })
+
+      valid.bind({
+        targets: [".pass", ".pass2"],
+        error: "Şifre alanları eşleşmiyor"
+      })
+
+      valid.bind({
+        targets: ["#username", ".email"],
+        error: "Email ve kullanıcı adı alanları eşleşmiyor"
       })
     }
   </script>

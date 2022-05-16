@@ -1,6 +1,6 @@
 {
   "name": "validkit",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Javascript form validator",
   "homepage": "https://github.com/ahmet687u/validkit",
   "main": "dist/js/validkit.js",
@@ -9,7 +9,12 @@
     "prod": "webpack --mode=production",
     "start": "webpack-dev-server --mode production --open"
   },
-  "keywords": ["validkit", "valid", "validasyon", "form"],
+  "keywords": [
+    "validkit",
+    "valid",
+    "validasyon",
+    "form"
+  ],
   "author": "Ahmet Bıyıklı",
   "license": "ISC",
   "dependencies": {},

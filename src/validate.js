@@ -36,7 +36,7 @@ export default class {
   }
 
   get values() {
-    return this.inputs.map(input => ({ [input.name]: input.value }))
+    return this.inputs.reduce((p, c) => ({...p, [c.name]: c.value}) , {})
   }
 
   refresh() {
@@ -74,5 +74,28 @@ export default class {
         //--- Event bubbling cancel
         event.stopImmediatePropagation();
     });
+  }
+
+  /**
+   * 
+   * @param {{targets: Array}} param0 
+   */
+  bind({ error, targets }) {
+    let values = targets.map(val => this.root.querySelector(val).value)
+
+    if(values.find(value => values.every(c => c === value)) === undefined) {
+      this.mistakes.push({ process: "add", error })
+    } else {
+      this.mistakes = this.mistakes.filter(err => err.error !== error)
+    }
+
+    targets.forEach(item => {
+      this.root.querySelector(item).addEventListener("keyup", (event) => {
+      this.bind(arguments[0])
+
+      //-- Event bubbling cancel
+      event.stopImmediatePropagation();
+      })
+    })
   }
 }

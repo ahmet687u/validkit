@@ -106,3 +106,20 @@ valid.customControl({
 })
 ```
 
+## bind() methodu
+Bu methodla parametre olarak gönderdiğimiz inputların value değerlerini birbirine bağlarız. Yani bu inputların value değerleri aynı olmalıdır
+
+```
+valid.bind({
+  targets: [".pass", ".pass2"],
+  error: "Şifre alanları eşleşmiyor"
+})
+```
+Bind methodunun iki parametresi vardır. Bunlardan ilki targets:
+<br />
+targets = Kendisine verilen dizideki seçicilere karşılık gelen girdi alanlarını seçer ve value değerlerinin eşit olup olmadığını kontrol eder.
+
+İkinci parametre ise error:
+<br />
+error = Value değerleri eşit olmadığında verilecek olan hata mesajı
+

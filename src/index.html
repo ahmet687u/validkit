@@ -29,7 +29,12 @@
     </div>
 
     <div style="margin: 10px 0;">
-      <input name="pass" type="password" class="pass2" placeholder="Tekrardan Şifre Giriniz">
+      <input name="pass2" type="password" class="pass2" placeholder="Tekrardan Şifre Giriniz">
+      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
+    </div>
+
+    <div style="margin: 10px 0;">
+      <input name="pass3" type="password" class="pass3" placeholder="Tekrardan Şifre Giriniz">
       <div style="font-size: 13px; color: crimson;" class="input-error"></div>
     </div>
 
@@ -75,7 +80,7 @@
         target: "#username",
         required: "Az çok demeyelim boş geçmeyelim",
         max: {
-          value: 5,
+          value: 20,
           error: "Kullanıcı adı en fazla 5 karakter olar"
         },
         error: (err, item) => {
@@ -119,7 +124,7 @@
       })
 
       valid.bind({
-        targets: [".pass", ".pass2"],
+        targets: [".pass", ".pass2", ".pass3"],
         error: "Şifre alanları eşleşmiyor"
       })
 

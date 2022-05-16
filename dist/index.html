@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DEMO VALİDATOR</title><script defer="defer" src="js/validkit.js"></script></head><body><h3>HELLO WEBPACK</h3><form id="form" autocomplete="off"><div style="margin: 10px 0;"><input name="username" id="username" class="username" placeholder="Kullanıcı Adı Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input name="email" class="email" placeholder="Email Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error asd"></div></div><div style="margin: 10px 0;"><input name="password" type="password" class="pass" placeholder="Şifre Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input name="pass" type="password" class="pass2" placeholder="Tekrardan Şifre Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><select name="selectbox" id="select"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option></select><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input value="Erkek" name="check" type="checkbox" id="check"> Check<div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input name="radio" type="radio" id="radio"> Radio<div style="font-size: 13px; color: crimson;" class="input-error"></div></div><button>GÖNDER</button></form><script>window.onload = () => {
+<!doctype html><html lang="tr"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DEMO VALİDATOR</title><script defer="defer" src="js/validkit.js"></script></head><body><h3>HELLO WEBPACK</h3><form id="form" autocomplete="off"><div style="margin: 10px 0;"><input name="username" id="username" class="username" placeholder="Kullanıcı Adı Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input name="email" class="email" placeholder="Email Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error asd"></div></div><div style="margin: 10px 0;"><input name="password" type="password" class="pass" placeholder="Şifre Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input name="pass2" type="password" class="pass2" placeholder="Tekrardan Şifre Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input name="pass3" type="password" class="pass3" placeholder="Tekrardan Şifre Giriniz"><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><select name="selectbox" id="select"><option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option></select><div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input value="Erkek" name="check" type="checkbox" id="check"> Check<div style="font-size: 13px; color: crimson;" class="input-error"></div></div><div style="margin: 10px 0;"><input name="radio" type="radio" id="radio"> Radio<div style="font-size: 13px; color: crimson;" class="input-error"></div></div><button>GÖNDER</button></form><script>window.onload = () => {
       const valid = new ValidateForm({
         root: "#form",
         submitOnValid: false,
@@ -16,7 +16,7 @@
         target: "#username",
         required: "Az çok demeyelim boş geçmeyelim",
         max: {
-          value: 5,
+          value: 20,
           error: "Kullanıcı adı en fazla 5 karakter olar"
         },
         error: (err, item) => {
@@ -60,7 +60,7 @@
       })
 
       valid.bind({
-        targets: [".pass", ".pass2"],
+        targets: [".pass", ".pass2", ".pass3"],
         error: "Şifre alanları eşleşmiyor"
       })
 

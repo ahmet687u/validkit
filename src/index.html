@@ -6,11 +6,42 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DEMO VALİDATOR</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    input {
+      padding: 10px 15px;
+      border-radius: 8px;
+      outline: none;
+      border: 1px solid #ccc;
+      width: 400px;
+    }
+
+    button {
+      background-color: #eb4d4b;
+      color: #fff;
+      border: none;
+      outline: none;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin: 10px auto;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h3>HELLO WEBPACK</h3>
+  <h3>VALIDKIT</h3>
 
   <form id="form" autocomplete="off">
     <div style="margin: 10px 0;">
@@ -29,33 +60,12 @@
     </div>
 
     <div style="margin: 10px 0;">
-      <input name="pass2" type="password" class="pass2" placeholder="Tekrardan Şifre Giriniz">
+      <input type="password" class="pass2" placeholder="2. Şifre Giriniz">
       <div style="font-size: 13px; color: crimson;" class="input-error"></div>
     </div>
 
     <div style="margin: 10px 0;">
-      <input name="pass3" type="password" class="pass3" placeholder="Tekrardan Şifre Giriniz">
-      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
-    </div>
-
-    <div style="margin: 10px 0;">
-      <select name="selectbox" id="select">
-        <option value=""></option>
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>
-      </select>
-      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
-    </div>
-
-    <div style="margin: 10px 0;">
-      <input value="Erkek" name="check" type="checkbox" id="check"> Check
-      <div style="font-size: 13px; color: crimson;" class="input-error"></div>
-    </div>
-
-    <div style="margin: 10px 0;">
-      <input name="radio" type="radio" id="radio"> Radio
+      <input name="pass3" type="password" class="pass3" placeholder="3. Şifre Giriniz">
       <div style="font-size: 13px; color: crimson;" class="input-error"></div>
     </div>
     <button>GÖNDER</button>
@@ -106,21 +116,6 @@
       valid.customControl({
         target: ".pass",
         required: "Şifre alanı zorunlu",
-      })
-
-      valid.customControl({
-        target: "#select",
-        required: "Bir seçenek seçin"
-      })
-
-      valid.customControl({
-        target: "#check",
-        checked: "Check yap loa"
-      })
-
-      valid.customControl({
-        target: "#radio",
-        radio: "Radio yap laoa"
       })
 
       valid.bind({

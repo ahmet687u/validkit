@@ -1,4 +1,5 @@
 import Utils from "./utils";
+import { createAndTriggerBindEvent, createAndTriggerCustomControlEvent, EVENT_TYPES } from "./event";
 
 export default class {
   constructor({ root, submitOnValid, inputEvent, submitFunc }) {
@@ -25,6 +26,17 @@ export default class {
       //--- Event bubbling cancel
       event.stopImmediatePropagation();
     });
+
+    //--- Inputs events with custom event
+    for(let i = 0; i < this.inputs.length; i++) {
+      this.inputs[i][`on${this.inputEvent}`] = (event) => {
+        createAndTriggerBindEvent(event.target.value, this.inputs[i])
+        createAndTriggerCustomControlEvent(event.target.value, this.inputs[i])
+
+        //--- Event bubbling cancel
+        event.stopImmediatePropagation();
+      }
+    }
   }
 
   get mistake() {
@@ -36,11 +48,11 @@ export default class {
   }
 
   get values() {
-    return this.inputs.reduce((p, c) => ({...p, [c.name]: c.value}) , {})
+    return this.inputs.reduce((p, c, i) => ({...p, [c.name ? c.name : `value${i}`]: c.value}) , {})
   }
 
   refresh() {
-    this.inputs.forEach(input => input.dispatchEvent(new KeyboardEvent(this.inputEvent, { 'key': '' })))
+    this.inputs.forEach(input => input.dispatchEvent(new KeyboardEvent(this.inputEvent, { 'key': ' ' })))
   }
 
   customControl(settings, hide = false) {
@@ -61,18 +73,17 @@ export default class {
 
     this.mistakes = [...this.mistakes, ...customMistake]
     this.mistakes = [...new Set(this.mistakes.map(a => JSON.stringify(a)))].map(a => JSON.parse(a))
-
+    
     if(hide) {
       //--- We are running the callback function
       settings.error && typeof settings.error === "function" && settings.error(customMistake, currentInput)
     }
 
     //--- Target element event
-    this.root.querySelector(settings.target).addEventListener(this.inputEvent, (event) => {
-        this.customControl(settings, true);
+    this.root.querySelector(settings.target).addEventListener(EVENT_TYPES.customControl, e => {
+      this.customControl(arguments[0], true)
 
-        //--- Event bubbling cancel
-        event.stopImmediatePropagation();
+      e.stopImmediatePropagation()
     });
   }
 
@@ -89,13 +100,14 @@ export default class {
       this.mistakes = this.mistakes.filter(err => err.error !== error)
     }
 
-    targets.forEach(item => {
-      this.root.querySelector(item).addEventListener("keyup", (event) => {
-      this.bind(arguments[0])
+    this.mistakes = [...new Set(this.mistakes.map(a => JSON.stringify(a)))].map(a => JSON.parse(a))
 
-      //-- Event bubbling cancel
-      event.stopImmediatePropagation();
+    for(let i = 0; i < targets.length; i++) {
+      this.root.querySelector(targets[i]).addEventListener(EVENT_TYPES.bind, e => {
+        this.bind(arguments[0])
+
+        e.stopImmediatePropagation()
       })
-    })
+    }
   }
 }

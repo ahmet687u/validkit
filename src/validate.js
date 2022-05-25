@@ -52,7 +52,7 @@ export default class {
   }
 
   refresh() {
-    this.inputs.forEach(input => input.dispatchEvent(new KeyboardEvent(this.inputEvent, { 'key': ' ' })))
+    this.inputs.forEach(input => input.dispatchEvent(new KeyboardEvent(this.inputEvent, { 'key': '' })))
   }
 
   customControl(settings, hide = false) {

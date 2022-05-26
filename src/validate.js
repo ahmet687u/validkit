@@ -87,7 +87,6 @@ export default class {
     });
   }
 
-  //--- UNUTMA = error değil message olacak düzelt
   /**
    * 
    * @param {{targets: Array}} param0 
@@ -96,9 +95,9 @@ export default class {
     let values = targets.map(val => this.root.querySelector(val).value)
 
     if(values.find(value => values.every(c => c === value)) === undefined) {
-      this.mistakes.push({ process: "add", error })
+      this.mistakes.push({ process: "add", message: error })
     } else {
-      this.mistakes = this.mistakes.filter(err => err.error !== error)
+      this.mistakes = this.mistakes.filter(err => err.message !== error)
     }
 
     this.mistakes = [...new Set(this.mistakes.map(a => JSON.stringify(a)))].map(a => JSON.parse(a))

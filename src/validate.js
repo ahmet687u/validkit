@@ -87,6 +87,7 @@ export default class {
     });
   }
 
+  //--- UNUTMA = error değil message olacak düzelt
   /**
    * 
    * @param {{targets: Array}} param0 

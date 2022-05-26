@@ -1,7 +1,7 @@
 # VALIDKIT
 
 ## İşlevi
-validkit javascript ile form validasyonları yapan bir kütüphanedir
+validkit javascript ile form validasyonları yapmanızı sağlayan bir kütüphanedir
 
 ## Import
 ```
@@ -15,24 +15,23 @@ bu şekilde import edip kullanabilirsiniz
 
 ## Tanımlama
 ```
-const validkit = new ValidateForm({
+const valid = new ValidateForm({
   root: "#form",
   submitOnValid: false,
-  inputEvent: "keyup",
-    submitFunc: (valid) => {
-      if(!valid.hasMistake) {
-        console.log(valid.values)
-      } else {
-        console.log(valid.mistake);
-      } 
-    }
+  inputEvent: "change",
+  submitFunc: (valid) => {
+    if(!valid.hasMistake) {
+      console.log(valid.values)
+    } else {
+      console.log(valid.mistake);
+    } 
   }
 })
 ```
 
 Yukarıdaki tanımlamada ***root*** özelliğine formun id yada class 'ını yazıyoruz, ***submitOnValid*** özelliği formdaki tüm validasyonlar doğru olduğu zaman formun submit olup olmamasını belirler, ***inputEvent*** ise validasyonları girdilerin hangi eventine göre olacağını belirler.
 
-***submitFunc*** özelliğinde ise formdaki validasyonların tamamı geçmişse ve submitOnValid özelliği false ise bu özelliğin içindeki fonksiyon çalışır. Örnekteki submtiFunc fonksiyonundaki ***valid.mistake*** bize formdaki tüm hataların içinde bulunduğu bir dizi verir. ***valid.hasMistake*** hata olup olmadığı hakkında boolean bir değer verir. ***valid.values*** ise inputların value değerlerini döndüren bir obje döndürür
+***submitFunc*** özelliğinde ise formdaki validasyonların tamamı geçmişse ve submitOnValid özelliği false ise bu özelliğin içindeki fonksiyon çalışır. Örnekteki submtiFunc fonksiyonundaki ***valid.mistake*** bize formdaki tüm hataların içinde bulunduğu bir dizi verir. ***valid.hasMistake*** hata olup olmadığı hakkında boolean bir değer verir. ***valid.values*** ise inputların value değerlerini döndüren bir obje döndürür. ***valid.values*** 'dan dönen objedeki key değerleri inputların namelerine göre belirlenir. Eğer inputun name değeri yoksa validkit tarafından dinamik bir key değeri atanır
 
 ## Örnek Girdi Kontrolü
 ```
@@ -49,7 +48,7 @@ validkit.customControl({
   }
 })
 ```
-Yukarıdaki örnekte basit bir input kontrolü yapıyoruz. ***target*** özelliğine kontol edeceğimiz inputun class ya da id 'sini giriyoruz. En üstteki tanımlamada event olarak keyup eventini seçtiğimiz için target özelliğinde seçilen inputun her keyup olayında belirlediğimiz kontrolleri yapacaktır. Eğer yapılan kontrollerde bir hata varsa ***error*** özelliğine o input için geçerli olan hatalar parametre olarak gelecektir. error özelliğine 2 parametre gelir bunlardan ilki hatalar, ikincisi target özelliğinde seçtiğimiz alandır. İlk parametrede gelecek olan hata mesajları özelliğin karşısında belirlediğimiz string değerlerdir
+Yukarıdaki örnekte basit bir input kontrolü yapıyoruz. ***target*** özelliğine kontol edeceğimiz inputun class ya da id 'sini giriyoruz. En üstteki tanımlamada event olarak change eventini seçtiğimiz için target özelliğinde seçilen inputun her change olayında belirlediğimiz kontrolleri yapacaktır. Eğer yapılan kontrollerde bir hata varsa ***error*** özelliğine **o input için geçerli olan hatalar** parametre olarak gelecektir. error özelliğine 2 parametre gelir bunlardan ilki hatalar, ikincisi target özelliğinde seçtiğimiz alandır. İlk parametrede gelecek olan hata mesajları özelliğin karşısında belirlediğimiz string değerlerdir
 
 ## Yapabileceğiniz Kontroller
 required => Seçili olan alanın zorunlu doldurulması gerektiğini belirtir
